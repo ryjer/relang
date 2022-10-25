@@ -1,0 +1,6 @@
+a.out
+*.o
+test
+/doc/*.txt
+/unicode_slice
+/utf8_unicode
