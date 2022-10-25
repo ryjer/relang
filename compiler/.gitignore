@@ -1,0 +1,4 @@
+*.o
+/a.out
+/test
+/utf8_unicode
