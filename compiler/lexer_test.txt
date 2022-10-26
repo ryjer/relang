@@ -18,4 +18,4 @@ int main()
 		hanoi("A", "B", "C", n);
 	}
 	return 0;
-} 190 0xfF 0ha0 0o77 0b1111 'a' ‘永’  '\t' '\n' 'b 'k 0; 0o 0a
+} 190 0xfF 0ha0 0o77 0b1111 'a' ‘永’  '\t' '\n' 'b '
