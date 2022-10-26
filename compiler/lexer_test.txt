@@ -6,6 +6,7 @@ void hanoi(string a, string b, string c, int n);
 int main()
 {
 	int n = -1;
+	char ch = 'a';
 	+ - * / % × ÷ ++ -- += -= *= ×= ÷= /= %=; //算术运算符
 	!= == < <= > >= ≠ ≤ ≥; //比较运算符
 	! & | ⊕ ⊙ ~ ^ << >> && || &= |= ⊕= ⊙= ^= <<= >>=; //逻辑运算符位运算符
@@ -17,4 +18,4 @@ int main()
 		hanoi("A", "B", "C", n);
 	}
 	return 0;
-} 190 0xfF 0ha0 0o77 0b1111
+} 190 0xfF 0ha0 0o77 0b1111 'a' ‘永’  '\t' '\n' 'b'
