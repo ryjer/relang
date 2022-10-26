@@ -19,3 +19,4 @@ int main()
 	}
 	return 0;
 } 190 0xfF 0ha0 0o77 0b1111 'a' ‘永’  '\t' '\n' 'b '
+"hello world!"
