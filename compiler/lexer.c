@@ -507,6 +507,8 @@ uint32_t 单词计数 = 0;
                 break;
             case 0x2209: 单词信息.类型 = 不属于; break;     //'∉': U+2209
             // 集合运算符：不包含与⊄ ⊈、包含于⊂ ⊆、真包含与⊊ ⫋
+            case 0x2205: case 0x00d8:           // 空集'∅':U+2205 带粗线的拉丁文大写字母Ø:U+00D8
+                单词信息.类型 = 空集; break;
             case 0x2284: case 0x2288:                       //'⊄': U+2284 '⊈': U+2288
                 单词信息.类型 = 不包含与;
                 break;
@@ -527,7 +529,7 @@ uint32_t 单词计数 = 0;
 //gcc -g -Wall lexer.c utf8_unicode/utf8_unicode.c unicode_slice/unicode_slice.c && ./a.out
 // 文件_扫描单词(FILE * 输入文件); 测试
 int main() {
-    FILE * 输入文件 = fopen("test.txt", "r");
+    FILE * 输入文件 = fopen("lexer_test.txt", "r");
     单词信息体 单词信息;
     // 读取一个单词
     单词信息 = 文件_扫描单词(输入文件);
