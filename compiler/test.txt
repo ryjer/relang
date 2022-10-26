@@ -14,4 +14,4 @@ int main()
 		hanoi("A", "B", "C", n);
 	}
 	return 0;
-} 0xfF 0h0a 0o77 0b1111
+} 190 0xfF 0ha0 0o77 0b1111
