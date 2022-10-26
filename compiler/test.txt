@@ -1,5 +1,8 @@
 void hanoi(string a, string b, string c, int n);
-
+/******************
+ * 嵌套块注释 
+ * /* 内部一层 */
+ *****************/
 int main()
 {
 	int n = -1;
@@ -14,9 +17,4 @@ int main()
 		hanoi("A", "B", "C", n);
 	}
 	return 0;
-} 190 0xfF 0ha0 0o77 0b1111 
-/******************
-	  嵌套块注释 
-	/* 内部一层 */
- *****************/
-int main()
+} 190 0xfF 0ha0 0o77 0b1111
