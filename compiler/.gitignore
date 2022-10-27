@@ -2,3 +2,5 @@
 /a.out
 /test
 /utf8_unicode
+/slice_unicode
+/slice_slice_unicode
