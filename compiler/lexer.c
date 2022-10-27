@@ -76,7 +76,7 @@ void 文件_回吐一个字符(FILE * 输入文件) {
  * 关联：全局变量sym,id[],str[],num,letter
  * 翻译：token:单词
  *****************************************************************************/
-#include "slice_unicode/unicode_slice.h" // unicode切片函数，用于保存字符串
+#include "slice_unicode/slice_unicode.h" // unicode切片函数，用于保存字符串
 typedef enum 错误码{
     没有错误,
     // 词法分析错误
