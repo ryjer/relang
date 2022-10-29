@@ -4,7 +4,7 @@
     #include <stdio.h>
     #include <stdlib.h>
     #include "../utf8_unicode/utf8_unicode.h"  //utf8与unicode字符的转换库
-    #include "../slice_unicode/slice_unicode.h" // unicode切片函数，用于保存字符串
+    #include "../unicode切片/unicode切片.h" // unicode切片函数，用于保存字符串
     // 提供扫描到的'字符'及该字符的'行列位置'
     typedef struct{
         int8_t  错误;     // 用于报告文件结束EOF等错误
@@ -23,7 +23,7 @@
         int64_t     字面值;     // 当为数字字面量是，记录对应二进制值
         单词类型    类型;
     } 单词信息体;
-
+    // 字符扫描
     uint32_t 单词计数 = 0;
     uint8_t 上一字符文件字节长度 = 0;  // 保存字符在文件中的字节长度，准备回退一个字符是使用
     // 行号和列号遵循常见'文本编辑器'的计数标准，从1开始计数
