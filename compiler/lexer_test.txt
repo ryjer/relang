@@ -1,4 +1,4 @@
-void hanoi(string a, string b, string c, int n); \
+void hanoi(string a, string b, string c, int n);
 /******************
  * 嵌套块注释 
  * /* 内部一层 */
@@ -20,5 +20,5 @@ int main()
 		hanoi("A", "B", "C", n);
 	}
 	return 0;
-} 0 09 190 0d09 0x0Ff 0ha0 0o07 0b0011 'a' ‘永’  '\t' '\n' 'b '
+} 0 09 190 0d09 0x0Ff 0ha0 0o07 0b0011 'a' ‘永’  '\t' '\n' 'b ' \
 “求: '3/2'的值 \\ \n”
