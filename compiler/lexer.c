@@ -429,8 +429,9 @@ void 文件_回吐一个字符(FILE * 输入文件) {
             case '}': 单词信息.类型 = 右花括号; break;
             //中间界符: , . : ;
             case ',': 单词信息.类型 = 逗号;     break;
-            case '.': 单词信息.类型 = 实心逗号;  break;
-            case ';': 单词信息.类型 = 分号;      break;
+            case '.': 单词信息.类型 = 实心句号; break;
+            case '?': 单词信息.类型 = 问号;     break;
+            case ';': 单词信息.类型 = 分号;     break;
             case '\n':
                 单词信息.类型 = 换行;
                 行内单词计数 = 0;
@@ -681,7 +682,8 @@ void 文件_回吐一个字符(FILE * 输入文件) {
             case 0xff09: 单词信息.类型 = 右圆括号; break;   //'）':U+FF09
             //中间界符: ，。：；、
             case 0xff0c: 单词信息.类型 = 逗号;     break;   //'，':U+FF0C
-            case 0x3002: 单词信息.类型 = 空心逗号; break;   //'。':U+3002
+            case 0x3002: 单词信息.类型 = 空心句号; break;   //'。':U+3002
+            case 0xff1f: 单词信息.类型 = 问号;     break;   //'？':U+FF1F
             case 0xff1b: 单词信息.类型 = 分号;     break;   //'；':U+FF1B
             case 0x3001: 单词信息.类型 = 顿号;     break;   //'、':U+3001
             case 0xff1a:                        //：、：：、：='：':U+FF1A
