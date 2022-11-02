@@ -1,0 +1,152 @@
+// 上下文无关文法 EBNF
+《文件》： 《包声明》 《导入声明》 《声明》
+        | 《包声明》 《链接声明》 《声明》
+《包声明》： package保留词 标识符 \n 
+《导入声明》： import保留词 《导入声明尾》
+	《导入声明尾》：《导入描述行》
+				| "(" \n 《导入描述行》* ")" \n  //别名可选，行任意重复
+	《导入描述行》： (标识符:别名)?  字符串:路径  \n 
+
+《标识符列表》： 标识符  (《分隔符》 标识符)* 
+《常数表达式》
+《常数表达式列表》
+《表达式列表》： 《表达式》 (《分隔符》 《表达式》)* 
+	《语句分隔符》： "\n" | ";"
+	《分隔符》:      "," | "、"
+
+《声明》：《默认声明》
+		|"+" 《默认声明》
+		|"-" 《默认声明》
+		| 空声明 \n
+《默认声明》：《常量声明》
+		| 《变量声明》
+		| 《类型声明》
+		| 《过程声明》
+		| 《类声明》
+		| 《函数声明》
+		| 空行 \n
+《常量声明》： const保留词 《常量声明尾》
+	《常量声明尾》：《常量描述行》
+				| "("  \n  《常量描述行》*  ")"  \n
+	《常量描述行》： 《标识符列表》  类型名?  赋值号  《常数表达式列表》  \n 
+《变量声明》： var保留词 《变量声明尾》
+	《变量声明尾》：《变量描述行》
+				| "("  \n  《变量描述行》*  ")"  \n
+	《变量描述行》： 《标识符列表》  (类型名  (赋值号  《表达式列表》)?   //指定类型，不初始化 或 初始化
+								  | 赋值号 《表达式列表》               //类型推导
+									)
+
+《类型声明》：type保留词 《类型声明尾》
+	《类型声明尾》： 《类型描述行》
+				|  "("  \n  《类型描述行》*  ")"  \n    //多行批量声明
+	《类型描述行》： 标识符:类型名  《类型描述》  \n
+	《类型描述》： 《基本类型名》
+				|《构造类型描述》
+	《构造类型描述》： 《地址类型描述》
+					|《数组类型描述》
+					|《结构体描述块》
+					|《共用体描述块》
+					|《枚举体描述块》
+		《地址类型描述》： "->" 《类型描述》
+		《数组类型描述》： "["  《常数表达式》:容量  "]"  《类型描述》
+		《结构体描述块》： struct保留词  "{"  《成员列表》  "}"  《语句分隔符》
+		《共用体描述块》： union保留词   "{"  《成员列表》  "}"  《语句分隔符》
+			《成员列表》： 《成员字段》 (《字段分隔符》 《字段声明》)*
+			《字段声明》： 标识符:字段名 《类型描述》?
+						| "+" 标识符:字段名 《类型描述》?
+						| "-" 标识符:字段名 《类型描述》?
+			《字段分隔符》："," | "\n"
+		《枚举体描述块》： enum保留词 "{" 《枚举成员列表》 "}" "\n"
+			《枚举成员列表》： 《枚举成员描述》 (《字段分隔符》 《枚举成员列表》)*
+			《枚举成员描述》： 标识符:成员名 (赋值号 常数:枚举值)?
+
+《函数声明》：func保留词  标识符  "(" 《参数列表》? ")"  《返回值列表》 《语句块》  //跟下面过程一样
+《过程声明》： proc保留词  标识符  "(" 《参数列表》? ")"  《返回值列表》?  《语句块》 
+	《参数列表》：  标识符:命名  类型名  (","  标识符:命名  类型名)* 
+	《返回值列表》：标识符:命名  类型名  (","  标识符:命名  类型名)* 
+《方法声明》：proc保留词 "(" 标识符  类型名 ")" 标识符 "(" 《参数列表》? ")" 《返回值列表》? 《语句块》
+
+《语句块》： "{" 《语句组》? "}" 《语句分隔符》
+《裸语句块》： "{" 《语句组》? "}"
+《语句组》： (《语句》? 《语句分隔符》)* 
+《语句》：《声明》
+		|《标签语句》
+		|《goto语句》
+		|《简单语句》
+		|《break语句》
+		|《continue语句》
+		|《branch语句》
+		|《if语句》
+		|《for语句》
+		|《defer语句》
+		|《return语句》
+		|《语句块》
+
+《简单语句》： 《赋值语句》
+			|《表达式》
+《赋值语句》：      《变量列表》  《赋值号》  《表达式列表》
+《标签语句》：      标识符 ":"  《语句》?
+《goto语句》：      goto保留词  标识符
+《break语句》：     break保留词  标识符?
+《continue语句》：  continue保留词  标识符?
+《defer语句》：      defer保留词  《表达式》
+《return语句》：    return保留词  《表达式列表》?
+
+《if语句》：  if保留词  ( 《表达式》
+						|《赋值语句》 《语句分隔符》 《表达式》 
+						) 《语句块》 (
+							else保留词  (《if语句》 | 《语句块》)
+						)?
+
+《for语句》： for保留词  (《表达式》
+						| 《初始化语句》 《语句分隔符》 《表达式》 《语句分隔符》 《赋值语句》
+						)  《语句块》
+				|《语句块》 until保留词 《表达式》 《语句分隔符》
+	《初始化语句》： 《变量声明》 | 《赋值语句》
+
+
+
+命名规则
+  尾     ： 由 保留词 开头的句子，为了提取 公共左因子 而除去关键字头剩下的部分
+  裸列表  : 行内，前后无边缘界符，内部各元素使用中间界符分隔。“列表”默认是裸列表
+  有界列表: 行内，带边缘界符划分独立域的列表
+  行     ：以换行 '\n' 结尾的任意句子
+  语句   ：句子。
+  语句组 ： 以换行符 '\n' 或分号 ';' 作为中间界符分隔的一组句子，但前后无边缘界符分隔
+  语句块 ：由 边缘界符 分离的语句组
+
+<program>	->	<dec><program>|^
+<dec>		->	<type>ident<dectail>|semicon|rsv_extern<type>ident semicon
+<type>		->	rsv_void|rsv_int|rsv_char
+<dectail>	->	semicon|<varlist>semicon|lparen<para>rparen<funtail>
+<funtail>	->	<block>|semicon
+<varlist>	->	comma ident<varlist>|^
+<para>		->	<type>ident<paralist>|^
+<paralist>	->	comma<type>ident<paralist>|^
+
+<block>		->	lbrac<childprogram>rbrac
+<childprogram>	->	<localdec><childprogram>|<statements><childprogram>|^
+<localdec>	->	<type>ident<lcoaldectail>semicon
+<localvartail>	->	comma ident<localvartail>|^
+
+<statement>	->	ident<idtail>semicon|<whilestat>|<ifstat>|<retstat>|semicon
+			|rsv_break semicon|rsv_continue semicon
+			|rsv_in input<ident>semicon|rsv_out output<expr>semicon
+<whilestat>	->	rsv_while lparen<expr>rparen<block>
+<ifstat>	->	rsv_if lparen<expr>rparen<block>rsv_else<block>
+<retstat>	->	rsv_return<returntail>semicon
+<returntail>	->	<expr>|^
+<idtail>	->	assign<exp>|lparen<realarg>rparen
+<realarg>	->	<expr><arglist>|^
+<arglist>	->	comma<expr><arglist>|^
+
+<expr>		->	<aloexp><exptail>
+<exptail>	->	<cmps><expr>|^
+<cmps>		->	gt|ge|ls|le|equ|nequ
+<aloexp>	->	<item><itemtail>
+<itemtail>	->	<adds><aloexp>|^
+<adds>		->	add|sub
+<item>		->	<factor><factortail>
+<factortail>	->	<muls><item>|^
+<factor>	->	ident<idtail>|number|chara|lparen<expr>rparen|string
+<muls>		->	mul|div
