@@ -9,13 +9,13 @@
         // 声明
         包, 模块, 命名域, 链接, 导入, 导出, 接口,
         变量, 常量, // var const
-        宏, 过程, 函数, 算符, // proc func
+        宏, 过程, 类, 函数, 算符, // proc func
         // 保留词 控制语句
         跳转, 调用, 善后, 返回, //goto call defer return
         分支, 如果, 则, 否则,  //分支 branch if then else
         循环, 直到, 当, 跳出, 继续, //循环 for until while break continue
         // 基本数据类型 类型定义
-        数据型, 逻辑型, 逻辑真, 逻辑假, // date bool true false
+        逻辑真, 逻辑假, 逻辑型, 数据型,  // true false date bool
         自然型, 自然型8, 自然型16, 自然型32, 自然型64, //无符号整型 uint uint8 uint16 uint32 uint64
         整型, 整型8, 整型16, 整型32, 整型64, //整型 int int8 int16 int32 int64
         浮点, 浮点32, 浮点64,       //浮点型 float float32 float64
