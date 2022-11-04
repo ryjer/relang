@@ -1,4 +1,4 @@
--const (
+var (
     i := 0;
     j int = 1
     x、 y := 2, 3;
