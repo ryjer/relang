@@ -6,6 +6,12 @@
     #include "../utf8_unicode/utf8_unicode.h"  //utf8与unicode字符的转换库
     #include "../unicode切片/unicode切片.h" // unicode切片函数，用于保存字符串
     
+    // 提供从1开始计数的字符位置
+    typedef struct {
+        uint32_t 行; //假定文件行数不超过 2^32 行
+        uint16_t 列; // 一行的列数有限
+    } 行列位置;
+
     // 提供扫描到的'字符'及该字符的'行列位置'
     typedef struct{
         int8_t  错误;     // 用于报告文件结束EOF等错误
