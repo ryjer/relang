@@ -28,6 +28,7 @@
         unicode切片 单词切片;    //记录单词，在字符和字符串字面量时记录转换后的值
         union {
             unicode切片 标识符;
+            bool        逻辑值;
             int         整数;
             double      浮点数;
             unicode字符 字符;

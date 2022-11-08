@@ -21,4 +21,4 @@ int main()
 	}
 	return 0; //返回0
 } 0 09 190 0d09 0x0Ff 0ha0 0o07 0b0011 'a' ‘永’  '\t' '\n' 'b ' \
-“求:\t '3/2'的值 \\ \n”  make copy insert set const macro _
+“求:\t '3/2'的值 \\ \n”  make copy insert set const macro _ true false
