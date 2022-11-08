@@ -1,4 +1,4 @@
-void hanoi(string a, string b, string c, int n);
+true false void hanoi(string a, string b, string c, int n);
 /******************
  * 嵌套块注释 
  * /* 内部一层 */
