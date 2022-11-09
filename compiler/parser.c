@@ -1498,9 +1498,10 @@ static uint8_t 单词类型_二元表达式节点类型表[] = {
                 }
             }
             break;
-        // 《二元表达式》随符集: ? , 、) ] 
+        // 《二元表达式》随符集: ? , 、) ] 语句分隔符;\n 文件结束符
         case 问号: case 冒号: case 逗号: case 顿号:
         case 右圆括号: case 右方括号:
+        case 换行: case 分号: case 文件结束:
             break;
         default:
             perror("《二元表达式》解析错误: 不明二元运算符 / 随符集匹配失败\n");
