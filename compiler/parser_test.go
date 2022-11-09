@@ -1,2 +1,1 @@
--a+b*c > x%y
--~!me.age[4]->++ + 1
+-a+b*c > x%y ? -~!me.age[4]->++-- + 1 : false
