@@ -103,9 +103,9 @@
 			| ε
 《语句行》： 《语句》 ("\n"| ";")
 《语句》：《声明》     //FIRST首符集：macro、type、const、var、标识符、常数、goto、break、continue
-		|《简单语句》  //            if、while、loop、for、defer、return
-//		|《标签语句》
-//		|《goto语句》
+		|《表达式》  //            if、while、loop、for、defer、return
+		|《标签语句》
+		|《goto语句》
 		|《break语句》
 		|《continue语句》
 		|《branch语句》
@@ -115,18 +115,15 @@
 		|《for语句》
 		|《defer语句》
 		|《return语句》
-		|《语句块》
+		|《裸语句块》
 
-《简单语句》： 《赋值语句》 //
-			| 《表达式语句》  //过程、方法 调用之类
-《赋值语句》：《变量表达式列表》 《赋值号》 《表达式》  //不支持多重赋值，多重赋值仅为声明语句的语法糖
-《表达式语句》：《表达式》
-// 《标签语句》：      标识符 ":"  《语句》? // 暂不实现
-// 《goto语句》：      goto保留词  标识符
-《break语句》：     break保留词  标识符?
-《continue语句》：  continue保留词  标识符?
-《defer语句》：     defer保留词  《表达式》
-《return语句》：    return保留词  《表达式列表》?
+《如果语句》： if 《表达式》 《裸语句块》 (else 《语句块》|《if语句》)?
+《标号语句》：   "label" 标识符 ":" \n? 《语句》
+《goto语句》：   goto保留词  标识符
+《break语句》：   break保留词  标识符?
+《continue语句》：continue保留词  标识符?
+《defer语句》：   defer保留词  《表达式》
+《return语句》：  return保留词  《表达式列表》?
 
 // 单行if 块if
 《if语句》： if保留词 "(" 《表达式》 ")" 《if语句尾》
