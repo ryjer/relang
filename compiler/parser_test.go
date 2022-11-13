@@ -1,3 +1,5 @@
+return 1,2,3
+defer add(x, y)
 continue L1
 break x
 goto test
