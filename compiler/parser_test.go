@@ -1,4 +1,4 @@
-return 1,2,3
+return 1;
 defer add(x, y)
 continue L1
 break x
