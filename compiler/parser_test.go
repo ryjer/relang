@@ -1,7 +1,5 @@
 {
-	{
-		return
-	}
+	_ := 1
 	// 注释
 	defer add(x, y)
 	continue L1
