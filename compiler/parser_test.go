@@ -2,6 +2,7 @@
 	while a > 1 {
 		a--
 	}
+	defer add(x, y)
 	if a>b {
 		i += 1
 	} else {
@@ -9,9 +10,14 @@
 	}
 	_ := 1
 	// 注释
-	defer add(x, y)
 	continue L1
 	break x
+	循环 i:=1; i<4; i++ {
+		a[i]++
+	}
+	循环 {
+		i+=1
+	}直到 i<3
 	label test:  goto test
 	return 1;
 }
