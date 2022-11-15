@@ -96,39 +96,44 @@
 					| ε    //FOLLOW随符集：右圆括号
 《方法声明》：mthd保留词 "(" 标识符  《类型描述》 ")" 标识符 "(" 《参数列表》? ")" 《返回值列表》? 《语句块》
 
-《语句行》： 《语句》 ("\n"| ";")
-《语句块》："{" 《语句组》 "}"
-《语句组》： (《语句行》?  \n|;)*
+《语句块》："{" (《语句》?  \n|;)* "}"
 《语句》：《声明》  //FIRST首符集：macro、type、const、var、标识符、label、goto、break、continue
 		|《表达式》    //        if、while、loop、for、defer、return
 		|《label语句》
 		|《goto语句》
 		|《break语句》  // 中止
 		|《continue语句》
-		|《if语句》
-		|《branch语句》
-		|《while语句》
-		|《for语句》
 		|《defer语句》
 		|《return语句》
+		|《if语句》     // 条件分支
+		|《match语句》
+		|《branch语句》
+			|《模式语句》： "|" 《表达式列表》 ":"
+		|《循环语句》
+		|《while语句》  // 循环
+		|《for语句》
 		|《语句块》
 
 《label语句》：   "label"    标识符 ":"
 《goto语句》：    "goto"     标识符
 《break语句》：   "break"    标识符?
 《continue语句》："continue" 标识符?
-《defer语句》： "defer"  《表达式》
+《defer语句》：   "defer"  《表达式》
 《return语句》：  return保留词  《表达式列表》?
 
-《if语句》：   if《表达式》 《语句块》 (else 《语句块》|《if语句》)? (\n|;)
+// 分支
+《if语句》：if 《表达式》 《语句块》 (else 《语句块》|《if语句》)? (\n|;)
+《match语句》：match 《表达式》 《语句块》
+《branch语句》：branch 标识符? {  }
 
-《while语句》：while保留词 "(" 《表达式》 ")" 语句块
+//循环
+《while语句》："while" 《表达式》 《语句块》
 
-《for语句》：for保留词 《for语句尾》
-	《for语句尾》："(" 《for初始化语句》? ";" 《表达式》? ";" 《赋值语句》? ")" 《语句块》
-				| 《裸语句块》 until保留词 "(" 《表达式》 ")" \n
-				| 《裸语句块》 \n
-	《for初始化语句》： var保留词 《标识符列表》 《类型描述》? 赋值号 《表达式列表》
+《循环语句》：《原始循环》 = 循环 《原始循环三元控制块》 《语句块》  //《原始循环》
+			|《直到循环》 = 循环 《语句块》 直到 《表达式》        //《直到循环》
+	《原始循环三元控制块》：《初始化语句》? ;|\n 《逻辑值表达式》? ;|\n 《后处理表达式》
+
+《for语句》：for 《原始循环三元控制块》 《语句块》
 
 
 《表达式》:= 《赋值表达式》 | 《条件表达式》
@@ -179,39 +184,3 @@
   语句行 : 末尾有结束界符的语句，例如 '\n' 或 ';' 两种界符
   语句组 ： 以换行符 '\n' 或分号 ';' 作为中间界符分隔的一组句子，但前后无边缘界符分隔
   语句块 ：由 边缘界符 在左右标识的语句组
-
-<program>	->	<dec><program>|^
-<dec>		->	<type>ident<dectail>|semicon|rsv_extern<type>ident semicon
-<type>		->	rsv_void|rsv_int|rsv_char
-<dectail>	->	semicon|<varlist>semicon|lparen<para>rparen<funtail>
-<funtail>	->	<block>|semicon
-<varlist>	->	comma ident<varlist>|^
-<para>		->	<type>ident<paralist>|^
-<paralist>	->	comma<type>ident<paralist>|^
-
-<block>		->	lbrac<childprogram>rbrac
-<childprogram>	->	<localdec><childprogram>|<statements><childprogram>|^
-<localdec>	->	<type>ident<lcoaldectail>semicon
-<localvartail>	->	comma ident<localvartail>|^
-
-<statement>	->	ident<idtail>semicon|<whilestat>|<ifstat>|<retstat>|semicon
-			|rsv_break semicon|rsv_continue semicon
-			|rsv_in input<ident>semicon|rsv_out output<expr>semicon
-<whilestat>	->	rsv_while lparen<expr>rparen<block>
-<ifstat>	->	rsv_if lparen<expr>rparen<block>rsv_else<block>
-<retstat>	->	rsv_return<returntail>semicon
-<returntail>	->	<expr>|^
-<idtail>	->	assign<exp>|lparen<realarg>rparen
-<realarg>	->	<expr><arglist>|^
-<arglist>	->	comma<expr><arglist>|^
-
-<expr>		->	<aloexp><exptail>
-<exptail>	->	<cmps><expr>|^
-<cmps>		->	gt|ge|ls|le|equ|nequ
-<aloexp>	->	<item><itemtail>
-<itemtail>	->	<adds><aloexp>|^
-<adds>		->	add|sub
-<item>		->	<factor><factortail>
-<factortail>	->	<muls><item>|^
-<factor>	->	ident<idtail>|number|chara|lparen<expr>rparen|string
-<muls>		->	mul|div
