@@ -1,24 +1,31 @@
 {
-	while a > 1 {
-		a--
-	}
-	defer add(x, y)
+	// 分支语句
 	if a>b {
 		i += 1
 	} else {
-		return i *= 2
+		return i/2
 	}
-	_ := 1
-	// 注释
+	match x {
+		|1: x++
+		|'a':
+			x += 2
+		|2,3: x--
+		|4,5,6,7: i++
+	}
 	continue L1
 	break x
-	循环 i:=1; i<4; i++ {
+	// 循环语句
+	while a > 1 {
+		a--
+	}
+	for i:=1; i<4; i++ {
 		a[i]++
 	}
 	循环 {
 		i+=1
-	}直到 i<3
+	} 直到 i = 3
 	label test:  goto test
+	defer add(x, y)
 	return 1;
 }
 {
