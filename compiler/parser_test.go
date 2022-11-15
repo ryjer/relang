@@ -23,7 +23,7 @@
 	}
 	循环 {
 		i+=1
-	} 直到 i = 3
+	}
 	label test:  goto test
 	defer add(x, y)
 	return 1;
