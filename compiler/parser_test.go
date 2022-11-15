@@ -1,4 +1,7 @@
 {
+	while a > 1 {
+		a--
+	}
 	if a>b {
 		i += 1
 	} else {
