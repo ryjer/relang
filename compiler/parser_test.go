@@ -1,3 +1,4 @@
+type age int
 {
 	// 分支语句
 	if a>b {
