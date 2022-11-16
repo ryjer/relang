@@ -1,10 +1,10 @@
 {
 	// 分支语句
 	if a>b {
-		i += 1
+		me · age += 1
 	} else {
 		return i/2
-	}
+	}	
 	match x {
 		|1: x++
 		|'a':
@@ -23,7 +23,7 @@
 	}
 	循环 {
 		i+=1
-	}
+	} 直到 i = 3
 	label test:  goto test
 	defer add(x, y)
 	return 1;
