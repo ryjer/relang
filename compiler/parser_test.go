@@ -1,8 +1,7 @@
-type user struct{
+type user union{
 	next ->user
 	name [16]char
-	age int8
-	height int
+	age int8，height int
 }
 {
 	// 分支语句
