@@ -1,5 +1,5 @@
-a,b,c,d,e,f,g
 const base int = 100
+const x,y int = 8,9
 +type user 结构体{
 	next ->user
 	+结果 枚举体{
