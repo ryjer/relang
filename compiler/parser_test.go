@@ -1,4 +1,9 @@
-type age [4]->proc
+type user struct{
+	next ->user
+	name [16]char
+	age int8
+	height int
+}
 {
 	// 分支语句
 	if a>b {
