@@ -1,7 +1,12 @@
-type user union{
+type user 结构体{
 	next ->user
+	结果 枚举体{
+		成功=0, 失败=1
+	}
 	name [16]char
-	age int8，height int
+	u 共用体{
+		age int8，height int
+	}
 }
 {
 	// 分支语句
