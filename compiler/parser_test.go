@@ -1,4 +1,4 @@
-type age [3]->int
+type age [4]->proc
 {
 	// 分支语句
 	if a>b {
