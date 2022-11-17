@@ -1,4 +1,4 @@
-type age [4]->int
+type age [3]->int
 {
 	// 分支语句
 	if a>b {
