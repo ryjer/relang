@@ -1,4 +1,9 @@
-const base int = 100
+const (
+	x int = 1
+	y = 2
+	z uint
+)
+const base = 100
 const x,y int = 8,9
 +type user 结构体{
 	next ->user
