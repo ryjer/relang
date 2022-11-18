@@ -1,3 +1,4 @@
+a int, b char , float
 package main
 import(
 	f "fmt"
