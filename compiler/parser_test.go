@@ -1,9 +1,9 @@
-const (
-	x int = 1
++ var(
+	x int = 1 +2
 	y = 2
 	z uint
 )
-const base = 100
+var base int = 100
 const x,y int = 8,9
 +type user 结构体{
 	next ->user
