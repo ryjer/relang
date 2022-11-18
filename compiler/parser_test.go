@@ -1,4 +1,4 @@
-+proc add(int, int) {
++func add(int, int) int64{
 	return a+b
 }
 package main
