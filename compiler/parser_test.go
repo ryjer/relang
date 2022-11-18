@@ -1,3 +1,7 @@
+import(
+	f "fmt"
+	"math"
+)
 + var(
 	x int = 1 +2
 	y = 2
