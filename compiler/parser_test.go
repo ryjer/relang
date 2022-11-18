@@ -1,4 +1,6 @@
-a int, b char , float
++proc add(int, int) {
+	return a+b
+}
 package main
 import(
 	f "fmt"
