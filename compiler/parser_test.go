@@ -1,15 +1,8 @@
-package main
-import(
-	f "fmt"
-	"math"
-)
-+ var(
-	x int = 1 +2
-	y = 2
-	z uint
-)
-var base int = 100
-const x,y int = 8,9
+// package main
+// import(
+// 	f "fmt"
+// 	"math"
+// )
 +type user 结构体{
 	next ->user
 	+结果 枚举体{
@@ -21,6 +14,13 @@ const x,y int = 8,9
 		age int8、height int
 	}
 }
++ var(
+	x int = 1 +2
+	y = 2
+	z uint
+)
+var base int = 100
+const x,y int = 8,9
 {
 	// 分支语句
 	if a>b {
@@ -50,8 +50,6 @@ const x,y int = 8,9
 	label test:  goto test
 	defer add(x, y)
 	return 1;
-}
-{
 }
 add(a+b,-i,x[j],this.age,5,6,7++,8,9 的尺寸,10,11,12)
 // arr[x+y] += -i + j + add()
