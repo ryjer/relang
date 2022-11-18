@@ -559,8 +559,10 @@ void 声明区_解析() {
             读入下一单词();
             节点->右指针 = 常量表达式列表_解析();
             break;
+        case 换行: case 分号:
+            break;
         default:
-            
+            perror("《常量描述》 标识符后只能是 类型 或 赋值\n");
             break;
     }
     return 节点;
