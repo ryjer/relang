@@ -1,6 +1,3 @@
-+func add(int, int) int64{
-	return a+b
-}
 package main
 import(
 	f "fmt"
@@ -13,7 +10,7 @@ import(
 		成功=0
 		失败
 	}
-	name [16]char
+	+name [16]char
 	-u 共用体{
 		age int8、height int
 	}
@@ -25,6 +22,12 @@ import(
 )
 var base int = 100
 const x,y int = 8,9
++func add(int, int) int64{
+	return a+b
+}
++proc (a int) incre(x int64) int64{
+	return a+b
+}
 // {
 // 	// 分支语句
 // 	if a>b {
