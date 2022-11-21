@@ -220,7 +220,7 @@ void 符号表_文件序列化打印(符号表* 符号表, FILE * 输出文件) 
 
 
 // gcc -g -Wall semantic.c parser.c lexer.c ../散列表_unicode切片_编码/散列表_unicode切片_编码.c ../unicode切片/unicode切片.c ../utf8_unicode/utf8_unicode.c && ./a.out 
-// 调试
+// 符号表调试
 int main() {
     符号表 * 表0 = 创建符号表(NULL, 0, 31);
     FILE * 输出文件 = stdout;
@@ -245,6 +245,9 @@ int main() {
     插入符号(表1, 原始utf8字符串转unicode切片("王"));
     插入符号(表1, 原始utf8字符串转unicode切片("ikun"));
     插入符号(表1, 原始utf8字符串转unicode切片("甲乙丙"));
+    fprintf(输出文件, "上级表: ");
+    符号表_文件序列化打印(表1->上一符号表, 输出文件);
+    fprintf(输出文件, "\n当前表: ");
     符号表_文件序列化打印(表1, 输出文件);
     // 向上查找
     fprintf(输出文件, "#### 表1 向上查询 ####\n");
@@ -254,6 +257,10 @@ int main() {
     节点指针 = 向上查找符号节点(表1, 原始utf8字符串转unicode切片("BB"));
     fprintf(输出文件, "\"BB\": ");
     unicode切片_文件打印(节点指针->符号.名字, 输出文件); fputc('\n', 输出文件);
+    // 表释放，会报段错误
+    // fprintf(输出文件, "#### 表0 释放 ####\n");
+    // 释放符号表(表1);
+    // 符号表_文件序列化打印(表1, 输出文件);
 
 
     fputc('\n', 输出文件);
